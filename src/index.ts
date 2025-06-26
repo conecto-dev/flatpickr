@@ -687,7 +687,7 @@ function FlatpickrInstance(
   ) {
     const dateIsEnabled = isEnabled(date, true),
       dayElement = createElement<DayElement>(
-        "span",
+        "button",
         className,
         date.getDate().toString()
       );
@@ -698,21 +698,26 @@ function FlatpickrInstance(
       "aria-label",
       self.formatDate(date, self.config.ariaDateFormat)
     );
+    dayElement.tabIndex = -1;
 
-    if (
-      className.indexOf("hidden") === -1 &&
-      compareDates(date, self.now) === 0
-    ) {
+    if (className.indexOf("hidden") === -1 && isToday(date)) {
       self.todayDateElem = dayElement;
       dayElement.classList.add("today");
       dayElement.setAttribute("aria-current", "date");
     }
 
     if (dateIsEnabled) {
-      dayElement.tabIndex = -1;
       if (isDateSelected(date)) {
         dayElement.classList.add("selected");
         self.selectedDateElem = dayElement;
+        dayElement.tabIndex = 0;
+
+        // Reset tabIndex for all other day elements
+        if (self.days) {
+          Array.from(self.days.childNodes)
+            .filter((day) => day !== dayElement && day instanceof Element)
+            .forEach((day) => ((day as HTMLButtonElement).tabIndex = -1));
+        }
 
         if (self.config.mode === "range") {
           toggleClass(
@@ -731,8 +736,11 @@ function FlatpickrInstance(
 
           if (className === "nextMonthDay") dayElement.classList.add("inRange");
         }
+      } else if (isToday(date) && self.selectedDates.length === 0) {
+        dayElement.tabIndex = 0;
       }
     } else {
+      dayElement.disabled = true;
       dayElement.classList.add("flatpickr-disabled");
     }
 
@@ -760,6 +768,10 @@ function FlatpickrInstance(
 
   function focusOnDayElem(targetNode: DayElement) {
     targetNode.focus();
+    Array.from(self.days.childNodes)
+      .filter((day) => (day as DayElement) !== targetNode)
+      .forEach((day) => ((day as DayElement).tabIndex = -1));
+    targetNode.tabIndex = 0;
     if (self.config.mode === "range") onMouseOver(targetNode);
   }
 
@@ -2369,6 +2381,17 @@ function FlatpickrInstance(
       self.config.mode !== "range";
 
     self.selectedDateElem = target;
+    self.selectedDateElem.tabIndex = 0;
+
+    // Make sure todayDateElem has tabIndex -1 when it's not the selected date
+    if (self.todayDateElem && self.todayDateElem !== self.selectedDateElem) {
+      self.todayDateElem.tabIndex = -1;
+    }
+
+    // Make sure todayDateElem has tabIndex -1 when it's not the selected date
+    if (self.todayDateElem && self.todayDateElem !== self.selectedDateElem) {
+      self.todayDateElem.tabIndex = -1;
+    }
 
     if (self.config.mode === "single") self.selectedDates = [selectedDate];
     else if (self.config.mode === "multiple") {
@@ -2795,6 +2818,10 @@ function FlatpickrInstance(
     }
 
     return false;
+  }
+
+  function isToday(date: Date) {
+    return compareDates(date, self.now) === 0;
   }
 
   function isDateInRange(date: Date) {

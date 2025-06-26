@@ -28,7 +28,7 @@ $selectedDayForeground = #fff
 	padding 0
 	border-right 0
 
-span.flatpickr-day
+button.flatpickr-day
 	&, &.prevMonthDay, &.nextMonthDay
 		border-radius 0 !important
 		border 1px solid $dayHoverBackground
@@ -69,7 +69,7 @@ span.flatpickr-day
 .flatpickr-weekwrapper .flatpickr-weeks
 	box-shadow none
 
-.flatpickr-weekwrapper span.flatpickr-day
+.flatpickr-weekwrapper button.flatpickr-day
 	border 0
 	margin -1px 0 0 -1px
 
@@ -79,7 +79,7 @@ span.flatpickr-day
 
 @css {
 	@media screen and (min-width:0\0) and (min-resolution: +72dpi) {
-		span.flatpickr-day {
+		button.flatpickr-day {
 			display: block;
 			flex: 1 0 auto;
 		}
