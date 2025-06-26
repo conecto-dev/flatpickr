@@ -450,8 +450,11 @@ function FlatpickrInstance(
     bind(window.document, "focus", documentClick, { capture: true });
 
     if (self.config.clickOpens === true) {
-      bind(self._input, "focus", self.open);
       bind(self._input, "click", self.open);
+    }
+
+    if (self.config.focusOpens === true) {
+      bind(self._input, "focus", self.open);
     }
 
     if (self.daysContainer !== undefined) {
@@ -1659,6 +1662,22 @@ function FlatpickrInstance(
     const allowKeydown = self.isOpen && (!allowInput || !isInput);
     const allowInlineKeydown = self.config.inline && isInput && !allowInput;
 
+    const openFirstFocus = () => {
+      const isTimeInteraction =
+        !!self.timeContainer &&
+        self.timeContainer.contains(eventTarget as HTMLElement);
+      const shouldFocusHour = self.config.enableTime && self.hourElement;
+
+      if (!isTimeInteraction) {
+        focusOnDay(undefined, 7);
+      }
+      if (shouldFocusHour) {
+        self.hourElement!.focus();
+      }
+      updateTime(e);
+      self._debouncedChange();
+    };
+
     if (e.keyCode === 13 && isInput) {
       if (allowInput) {
         self.setDate(
@@ -1671,7 +1690,13 @@ function FlatpickrInstance(
         self.close();
         return (eventTarget as HTMLElement).blur();
       } else {
-        self.open();
+        self.open(e);
+        openFirstFocus();
+      }
+    } else if (e.keyCode === 40 && isInput && !allowKeydown) {
+      if (!allowInput) {
+        self.open(e);
+        openFirstFocus();
       }
     } else if (
       isCalendarElem(eventTarget as HTMLElement) ||
@@ -1903,7 +1928,7 @@ function FlatpickrInstance(
   }
 
   function open(
-    e?: FocusEvent | MouseEvent,
+    e?: FocusEvent | MouseEvent | KeyboardEvent,
     positionElement = self._positionElement
   ) {
     if (self.isMobile === true) {
@@ -1942,7 +1967,7 @@ function FlatpickrInstance(
         self.config.allowInput === false &&
         (e === undefined ||
           !(self.timeContainer as HTMLDivElement).contains(
-            e.relatedTarget as Node
+            "relatedTarget" in e ? (e.relatedTarget as Node) : null
           ))
       ) {
         setTimeout(() => (self.hourElement as HTMLInputElement).select(), 50);
@@ -1997,6 +2022,7 @@ function FlatpickrInstance(
       "allowInput",
       "allowInvalidPreload",
       "clickOpens",
+      "focusOpens",
       "time_24hr",
       "enableTime",
       "noCalendar",
@@ -2422,11 +2448,18 @@ function FlatpickrInstance(
     clickOpens: [
       () => {
         if (self.config.clickOpens === true) {
-          bind(self._input, "focus", self.open);
           bind(self._input, "click", self.open);
         } else {
-          self._input.removeEventListener("focus", self.open);
           self._input.removeEventListener("click", self.open);
+        }
+      },
+    ],
+    focusOpens: [
+      () => {
+        if (self.config.focusOpens === true) {
+          bind(self._input, "focus", self.open);
+        } else {
+          self._input.removeEventListener("focus", self.open);
         }
       },
     ],

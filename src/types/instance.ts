@@ -97,7 +97,10 @@ export type Instance = Elements &
     jumpToDate: (date?: DateOption, triggerChange?: boolean) => void;
     updateValue: (triggerChange?: boolean) => void;
     onMouseOver: (elem?: DayElement, cellClass?: string) => void;
-    open: (e?: FocusEvent | MouseEvent, positionElement?: HTMLElement) => void;
+    open: (
+      e?: FocusEvent | MouseEvent | KeyboardEvent,
+      positionElement?: HTMLElement
+    ) => void;
     redraw: () => void;
     set: (
       option: keyof Options | { [k in keyof Options]?: Options[k] },
