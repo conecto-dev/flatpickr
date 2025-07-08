@@ -1,6 +1,6 @@
 {
   "name": "@conecto-dev/flatpickr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight, powerful javascript datetime picker",
   "scripts": {
     "build": "run-s build:pre build:build build:esm build:types build:post",
