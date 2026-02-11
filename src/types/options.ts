@@ -88,6 +88,10 @@ export interface BaseOptions {
   /* Defaults to false */
   focusOpens: boolean;
 
+  /* Whether pressing Enter on the input should open the picker when it's closed */
+  /* Defaults to false */
+  enterOpens: boolean;
+
   /* Whether calendar should close after date selection */
   closeOnSelect: boolean;
 
@@ -294,6 +298,7 @@ export interface ParsedOptions {
   ariaDateFormat: string;
   autoFillDefaultTime: boolean;
   clickOpens: boolean;
+  enterOpens: boolean;
   focusOpens: boolean;
   closeOnSelect: boolean;
   conjunction: string;
@@ -363,6 +368,7 @@ export const defaults: ParsedOptions = {
   ariaDateFormat: "F j, Y",
   autoFillDefaultTime: true,
   clickOpens: true,
+  enterOpens: true,
   focusOpens: false,
   closeOnSelect: true,
   conjunction: ", ",

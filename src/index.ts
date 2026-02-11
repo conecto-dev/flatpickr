@@ -1717,7 +1717,10 @@ function FlatpickrInstance(
     };
 
     if (e.keyCode === 13 && isInput) {
-      if (allowInput) {
+      if (self.config.enterOpens && !self.isOpen) {
+        self.open(e);
+        openFirstFocus();
+      } else if (allowInput) {
         self.setDate(
           self._input.value,
           true,
