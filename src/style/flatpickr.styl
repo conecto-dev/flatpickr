@@ -152,9 +152,6 @@
       else
         border-top-color $calendarBackground
 
-  &:focus
-    outline 0
-
 .flatpickr-wrapper
   position relative
   display inline-block
@@ -177,6 +174,8 @@
     flex 1
 
   .flatpickr-prev-month, .flatpickr-next-month
+    background transparent
+    border none
     user-select none
     text-decoration none
     cursor pointer
@@ -360,9 +359,6 @@
     -moz-appearance textfield
     appearance textfield
 
-    &:focus
-      outline 0
-
     &[disabled], &[disabled]:hover
       font-size 100%
       color alpha($monthForeground, 0.5)
@@ -381,7 +377,6 @@
     height: auto
     line-height: inherit
     margin: -1px 0 0 0
-    outline: none
     padding: 0 0 0 0.5ch
     position: relative
     vertical-align: initial
@@ -391,15 +386,11 @@
     appearance: menulist
     width: auto
 
-    &:focus, &:active
-      outline: none
-
     &:hover
       background: alpha($invertedBg, 0.05)
 
     .flatpickr-monthDropdown-month
       background-color: $monthBackground
-      outline: none
       padding: 0
 
 .flatpickr-weekdays
@@ -440,9 +431,6 @@ span.flatpickr-weekday
   align-items: flex-start;
   width $daysWidth
 
-  &:focus
-    outline 0
-
   if $noCalendarBorder is defined
     border-left 1px solid $calendarBorderColor
     border-right 1px solid $calendarBorderColor
@@ -450,7 +438,6 @@ span.flatpickr-weekday
 
 .dayContainer
   padding 0
-  outline 0
   text-align left
   width ($daysWidth)
   min-width ($daysWidth)
@@ -494,7 +481,6 @@ span.flatpickr-weekday
   &, &.prevMonthDay, &.nextMonthDay
     &.inRange, &.today.inRange, &:hover, &:focus
       cursor pointer
-      outline 0
       background $dayHoverBackground
       border-color $dayHoverBackground
 
@@ -613,7 +599,6 @@ span.flatpickr-weekday
 
 .flatpickr-time
   text-align center
-  outline 0
   display block
   height 0 // hide initially
   line-height $timeHeight
@@ -673,10 +658,6 @@ span.flatpickr-weekday
 
     &.flatpickr-minute, &.flatpickr-second
       font-weight 400
-
-    &:focus
-      outline 0
-      border 0
 
   .flatpickr-time-separator, .flatpickr-am-pm
     height inherit

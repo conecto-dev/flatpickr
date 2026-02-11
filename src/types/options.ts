@@ -268,6 +268,9 @@ Use it along with "enableTime" to create a time picker. */
   /* Display week numbers left of the calendar. */
   weekNumbers: boolean;
 
+  /* Trap focus within the calendar when open. Defaults to true. */
+  trapFocus: boolean;
+
   /* See https://chmln.github.io/flatpickr/examples/#flatpickr-external-elements */
   wrap: boolean;
 }
@@ -342,6 +345,7 @@ export interface ParsedOptions {
   showMonths: number;
   static: boolean;
   time_24hr: boolean;
+  trapFocus: boolean;
   weekNumbers: boolean;
   wrap: boolean;
 }
@@ -425,6 +429,7 @@ export const defaults: ParsedOptions = {
   showMonths: 1,
   static: false,
   time_24hr: false,
+  trapFocus: true,
   weekNumbers: false,
   wrap: false,
 };

@@ -459,7 +459,6 @@ function FlatpickrInstance(
 
     if (self.daysContainer !== undefined) {
       bind(self.monthNav, "click", onMonthNavClick);
-
       bind(self.monthNav, ["keyup", "increment"], onYearInput);
       bind(self.daysContainer, "click", selectDate);
     }
@@ -793,6 +792,31 @@ function FlatpickrInstance(
     return undefined;
   }
 
+  function getFirstDayOfMonth() {
+    // Find the first day that belongs to the current month (not previous/next month)
+    const startMonth = 0;
+    const endMonth = self.config.showMonths;
+
+    for (let m = startMonth; m < endMonth; m++) {
+      const month = (self.daysContainer as HTMLDivElement).children[m];
+
+      for (let i = 0; i < month.children.length; i++) {
+        const c = month.children[i] as DayElement;
+        // Check if it's not a prevMonthDay or nextMonthDay and is enabled
+        if (
+          c.className.indexOf("prevMonthDay") === -1 &&
+          c.className.indexOf("nextMonthDay") === -1 &&
+          c.className.indexOf("hidden") === -1 &&
+          isEnabled(c.dateObj)
+        ) {
+          return c;
+        }
+      }
+    }
+    // Fallback to first available day if no current month day is found
+    return getFirstAvailableDay(1);
+  }
+
   function getNextAvailableDay(current: DayElement, delta: number) {
     const givenMonth =
       current.className.indexOf("Month") === -1
@@ -976,8 +1000,6 @@ function FlatpickrInstance(
       );
     };
 
-    self.monthsDropdownContainer.tabIndex = -1;
-
     self.monthsDropdownContainer.innerHTML = "";
 
     for (let i = 0; i < 12; i++) {
@@ -1040,7 +1062,7 @@ function FlatpickrInstance(
       monthElement = self.monthsDropdownContainer;
     }
 
-    const yearInput = createNumberInput("cur-year", { tabindex: "-1" });
+    const yearInput = createNumberInput("cur-year");
 
     const yearElement = yearInput.getElementsByTagName(
       "input"
@@ -1106,13 +1128,16 @@ function FlatpickrInstance(
     self.yearElements = [];
     self.monthElements = [];
 
-    self.prevMonthNav = createElement<HTMLSpanElement>(
-      "span",
+    self.prevMonthNav = createElement<HTMLButtonElement>(
+      "button",
       "flatpickr-prev-month"
     );
     self.prevMonthNav.innerHTML = self.config.prevArrow;
 
-    self.nextMonthNav = createElement("span", "flatpickr-next-month");
+    self.nextMonthNav = createElement<HTMLButtonElement>(
+      "button",
+      "flatpickr-next-month"
+    );
     self.nextMonthNav.innerHTML = self.config.nextArrow;
 
     buildMonths();
@@ -1138,6 +1163,7 @@ function FlatpickrInstance(
     });
 
     self.currentYearElement = self.yearElements[0];
+    self.currentMonthElement = self.monthElements[0];
 
     updateNavigationCurrentMonth();
 
@@ -1725,6 +1751,12 @@ function FlatpickrInstance(
             e.preventDefault();
             updateTime();
             focusAndClose();
+          } else if (
+            eventTarget === self.currentMonthElement &&
+            self.monthsDropdownContainer
+          ) {
+            e.preventDefault();
+            self.monthsDropdownContainer.focus();
           } else selectDate(e);
 
           break;
@@ -1792,31 +1824,100 @@ function FlatpickrInstance(
           break;
 
         case 9:
-          if (isTimeObj) {
-            const elems = ([
-              self.hourElement,
-              self.minuteElement,
-              self.secondElement,
-              self.amPM,
-            ] as Node[])
-              .concat(self.pluginElements)
-              .filter((x) => x) as HTMLInputElement[];
-
-            const i = elems.indexOf(eventTarget as HTMLInputElement);
-
-            if (i !== -1) {
-              const target = elems[i + (e.shiftKey ? -1 : 1)];
-              e.preventDefault();
-              (target || self._input).focus();
-            }
-          } else if (
-            !self.config.noCalendar &&
-            self.daysContainer &&
-            self.daysContainer.contains(eventTarget as Node) &&
-            e.shiftKey
-          ) {
+          if (isCalendarElem(eventTarget as HTMLElement) || isTimeObj) {
             e.preventDefault();
-            self._input.focus();
+
+            const tabbableElements: HTMLElement[] = [];
+
+            if (self.prevMonthNav && !self._hidePrevMonthArrow) {
+              tabbableElements.push(self.prevMonthNav);
+            }
+            if (self.monthsDropdownContainer) {
+              tabbableElements.push(self.monthsDropdownContainer);
+            }
+            if (self.currentYearElement) {
+              tabbableElements.push(self.currentYearElement);
+            }
+            if (self.nextMonthNav && !self._hideNextMonthArrow) {
+              tabbableElements.push(self.nextMonthNav);
+            }
+
+            const isCurrentlyOnDay =
+              !self.config.noCalendar &&
+              self.daysContainer &&
+              self.daysContainer.contains(eventTarget as Node) &&
+              (eventTarget as HTMLElement).classList.contains("flatpickr-day");
+
+            if (!self.config.noCalendar && self.daysContainer) {
+              let tabbableDay: HTMLElement | null = null;
+
+              if (isCurrentlyOnDay) {
+                tabbableDay = eventTarget as HTMLElement;
+              } else {
+                tabbableDay = self.daysContainer.querySelector(
+                  '.flatpickr-day[tabindex="0"]'
+                ) as HTMLElement;
+
+                // If no day has tabindex="0", find the first day of the current month
+                if (!tabbableDay) {
+                  const firstDay = getFirstDayOfMonth();
+                  if (firstDay) {
+                    tabbableDay = firstDay;
+                    // Set tabindex so it's accessible
+                    firstDay.tabIndex = 0;
+                  }
+                }
+              }
+
+              if (tabbableDay) {
+                tabbableElements.push(tabbableDay);
+              }
+            }
+
+            if (self.config.enableTime) {
+              if (self.hourElement) tabbableElements.push(self.hourElement);
+              if (self.minuteElement) tabbableElements.push(self.minuteElement);
+              if (self.secondElement) tabbableElements.push(self.secondElement);
+              if (self.amPM) tabbableElements.push(self.amPM);
+            }
+
+            if (self.pluginElements) {
+              self.pluginElements.forEach((elem) => {
+                if (elem && elem instanceof HTMLElement) {
+                  tabbableElements.push(elem);
+                }
+              });
+            }
+
+            const currentIndex = tabbableElements.indexOf(
+              eventTarget as HTMLElement
+            );
+
+            if (currentIndex !== -1) {
+              const direction = e.shiftKey ? -1 : 1;
+              const nextIndex = currentIndex + direction;
+              let targetElement: HTMLElement | null = null;
+
+              if (self.config.trapFocus) {
+                if (nextIndex < 0) {
+                  targetElement = tabbableElements[tabbableElements.length - 1];
+                } else if (nextIndex >= tabbableElements.length) {
+                  targetElement = tabbableElements[0];
+                } else {
+                  targetElement = tabbableElements[nextIndex];
+                }
+              } else {
+                if (nextIndex < 0 || nextIndex >= tabbableElements.length) {
+                  self._input.focus();
+                } else {
+                  targetElement = tabbableElements[nextIndex];
+                }
+              }
+
+              if (targetElement) {
+                targetElement.focus();
+              }
+            }
           }
 
           break;
