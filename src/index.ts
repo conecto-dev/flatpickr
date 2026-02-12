@@ -1716,7 +1716,7 @@ function FlatpickrInstance(
       self._debouncedChange();
     };
 
-    if (e.keyCode === 13 && isInput) {
+    if (e.key === "Enter" && isInput) {
       if (self.config.enterOpens && !self.isOpen) {
         self.open(e);
         openFirstFocus();
@@ -1734,7 +1734,7 @@ function FlatpickrInstance(
         self.open(e);
         openFirstFocus();
       }
-    } else if (e.keyCode === 40 && isInput && !allowKeydown) {
+    } else if (e.key === "ArrowDown" && isInput && !allowKeydown) {
       if (!allowInput) {
         self.open(e);
         openFirstFocus();
@@ -1748,8 +1748,8 @@ function FlatpickrInstance(
         !!self.timeContainer &&
         self.timeContainer.contains(eventTarget as HTMLElement);
 
-      switch (e.keyCode) {
-        case 13:
+      switch (e.key) {
+        case "Enter":
           if (isTimeObj) {
             e.preventDefault();
             updateTime();
@@ -1764,21 +1764,21 @@ function FlatpickrInstance(
 
           break;
 
-        case 27: // escape
+        case "Escape": // escape
           e.preventDefault();
           focusAndClose();
           break;
 
-        case 8:
-        case 46:
+        case "Backspace":
+        case "Delete":
           if (isInput && !self.config.allowInput) {
             e.preventDefault();
             self.clear();
           }
           break;
 
-        case 37:
-        case 39:
+        case "ArrowLeft":
+        case "ArrowRight":
           if (!isTimeObj && !isInput) {
             e.preventDefault();
 
@@ -1788,7 +1788,7 @@ function FlatpickrInstance(
               (allowInput === false ||
                 (activeElement && isInView(activeElement)))
             ) {
-              const delta = e.keyCode === 39 ? 1 : -1;
+              const delta = e.key === "ArrowRight" ? 1 : -1;
 
               if (!e.ctrlKey) focusOnDay(undefined, delta);
               else {
@@ -1801,10 +1801,10 @@ function FlatpickrInstance(
 
           break;
 
-        case 38:
-        case 40:
+        case "ArrowUp":
+        case "ArrowDown":
           e.preventDefault();
-          const delta = e.keyCode === 40 ? 1 : -1;
+          const delta = e.key === "ArrowDown" ? 1 : -1;
           if (
             (self.daysContainer &&
               (eventTarget as DayElement).$i !== undefined) ||
@@ -1826,7 +1826,7 @@ function FlatpickrInstance(
 
           break;
 
-        case 9:
+        case "Tab":
           if (isCalendarElem(eventTarget as HTMLElement) || isTimeObj) {
             e.preventDefault();
 
