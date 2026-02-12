@@ -27,7 +27,6 @@ export interface Elements {
 
   // month nav
   monthNav: HTMLDivElement;
-
   monthsDropdownContainer: HTMLSelectElement;
 
   yearElements: HTMLInputElement[];
@@ -40,8 +39,8 @@ export interface Elements {
   // month nav arrows
   _hidePrevMonthArrow: boolean;
   _hideNextMonthArrow: boolean;
-  prevMonthNav: HTMLElement;
-  nextMonthNav: HTMLElement;
+  prevMonthNav: HTMLButtonElement;
+  nextMonthNav: HTMLButtonElement;
 
   timeContainer?: HTMLDivElement;
   hourElement?: HTMLInputElement;

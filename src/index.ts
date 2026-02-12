@@ -458,8 +458,9 @@ function FlatpickrInstance(
     }
 
     if (self.daysContainer !== undefined) {
-      bind(self.monthNav, "click", onMonthNavClick);
-      bind(self.monthNav, ["keyup", "increment"], onYearInput);
+      bind(self.prevMonthNav, "click", onMonthNavClick);
+      bind(self.nextMonthNav, "click", onMonthNavClick);
+      bind(self.monthsDropdownContainer, ["keyup", "increment"], onYearInput);
       bind(self.daysContainer, "click", selectDate);
     }
 
@@ -1681,17 +1682,6 @@ function FlatpickrInstance(
   }
 
   function onKeyDown(e: KeyboardEvent) {
-    // e.key                      e.keyCode
-    // "Backspace"                        8
-    // "Tab"                              9
-    // "Enter"                           13
-    // "Escape"     (IE "Esc")           27
-    // "ArrowLeft"  (IE "Left")          37
-    // "ArrowUp"    (IE "Up")            38
-    // "ArrowRight" (IE "Right")         39
-    // "ArrowDown"  (IE "Down")          40
-    // "Delete"     (IE "Del")           46
-
     const eventTarget = getEventTarget(e);
     const isInput = self.config.wrap
       ? element.contains(eventTarget as HTMLElement)
@@ -1754,14 +1744,7 @@ function FlatpickrInstance(
             e.preventDefault();
             updateTime();
             focusAndClose();
-          } else if (
-            eventTarget === self.currentMonthElement &&
-            self.monthsDropdownContainer
-          ) {
-            e.preventDefault();
-            self.monthsDropdownContainer.focus();
-          } else selectDate(e);
-
+          }
           break;
 
         case "Escape": // escape
@@ -3021,10 +3004,6 @@ function FlatpickrInstance(
 
     if (isPrevMonth || isNextMonth) {
       changeMonth(isPrevMonth ? -1 : 1);
-    } else if (
-      self.yearElements.indexOf(eventTarget as HTMLInputElement) >= 0
-    ) {
-      (eventTarget as HTMLInputElement).select();
     } else if ((eventTarget as Element).classList.contains("arrowUp")) {
       self.changeYear(self.currentYear + 1);
     } else if ((eventTarget as Element).classList.contains("arrowDown")) {
