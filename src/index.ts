@@ -692,6 +692,7 @@ function FlatpickrInstance(
         date.getDate().toString()
       );
 
+    dayElement.type = "button";
     dayElement.dateObj = date;
     dayElement.$i = i;
     dayElement.setAttribute(
@@ -1133,12 +1134,14 @@ function FlatpickrInstance(
       "button",
       "flatpickr-prev-month"
     );
+    self.prevMonthNav.type = "button";
     self.prevMonthNav.innerHTML = self.config.prevArrow;
 
     self.nextMonthNav = createElement<HTMLButtonElement>(
       "button",
       "flatpickr-next-month"
     );
+    self.nextMonthNav.type = "button";
     self.nextMonthNav.innerHTML = self.config.nextArrow;
 
     buildMonths();
