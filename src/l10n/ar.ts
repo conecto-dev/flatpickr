@@ -51,6 +51,8 @@ export const Arabic: CustomLocale = {
   hourAriaLabel: "ساعة",
   minuteAriaLabel: "دقيقة",
   time_24hr: false,
+  prevMonthAriaLabel: "الشهر السابق",
+  nextMonthAriaLabel: "الشهر التالي",
 };
 
 fp.l10ns.ar = Arabic;

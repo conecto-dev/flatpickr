@@ -57,6 +57,8 @@ export const Persian: CustomLocale = {
   ordinal: () => {
     return "";
   },
+  prevMonthAriaLabel: "ماه قبل",
+  nextMonthAriaLabel: "ماه بعد",
 };
 
 fp.l10ns.fa = Persian;

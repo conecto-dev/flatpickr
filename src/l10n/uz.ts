@@ -63,6 +63,8 @@ export const Uzbek: CustomLocale = {
   amPM: ["AM", "PM"],
   yearAriaLabel: "Йил",
   time_24hr: true,
+  prevMonthAriaLabel: "Олдинги Ой",
+  nextMonthAriaLabel: "Кейинги Ой",
 };
 
 fp.l10ns.uz = Uzbek;

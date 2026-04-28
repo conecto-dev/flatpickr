@@ -60,6 +60,8 @@ export const German: CustomLocale = {
   scrollTitle: "Zum Ändern scrollen",
   toggleTitle: "Zum Umschalten klicken",
   time_24hr: true,
+  prevMonthAriaLabel: "Vorheriger Monat",
+  nextMonthAriaLabel: "Nächster Monat",
 };
 
 fp.l10ns.de = German;

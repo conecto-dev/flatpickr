@@ -60,6 +60,8 @@ export const Finnish: CustomLocale = {
     return ".";
   },
   time_24hr: true,
+  prevMonthAriaLabel: "Edellinen Kuukausi",
+  nextMonthAriaLabel: "Seuraava Kuukausi",
 };
 
 fp.l10ns.fi = Finnish;

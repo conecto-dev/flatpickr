@@ -66,6 +66,8 @@ export const Dutch: CustomLocale = {
 
     return "de";
   },
+  prevMonthAriaLabel: "Vorige Maand",
+  nextMonthAriaLabel: "Volgende Maand",
 };
 
 fp.l10ns.nl = Dutch;

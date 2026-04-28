@@ -63,6 +63,8 @@ export const Turkish: CustomLocale = {
   toggleTitle: "Aç/Kapa",
   amPM: ["ÖÖ", "ÖS"],
   time_24hr: true,
+  prevMonthAriaLabel: "Önceki Ay",
+  nextMonthAriaLabel: "Sonraki Ay",
 };
 
 fp.l10ns.tr = Turkish;

@@ -53,6 +53,8 @@ export const Bangla: CustomLocale = {
       "ডিসেম্বর",
     ],
   },
+  prevMonthAriaLabel: "পূর্ববর্তী মাস",
+  nextMonthAriaLabel: "পরবর্তী মাস",
 };
 
 fp.l10ns.bn = Bangla;

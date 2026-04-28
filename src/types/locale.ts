@@ -58,6 +58,8 @@ export type Locale = {
   monthAriaLabel: string;
   hourAriaLabel: string;
   minuteAriaLabel: string;
+  prevMonthAriaLabel: string;
+  nextMonthAriaLabel: string;
   time_24hr: boolean;
 };
 
@@ -73,6 +75,8 @@ export type CustomLocale = {
   monthAriaLabel?: string;
   hourAriaLabel?: string;
   minuteAriaLabel?: string;
+  prevMonthAriaLabel?: string;
+  nextMonthAriaLabel?: string;
   amPM?: Locale["amPM"];
   time_24hr?: Locale["time_24hr"];
   weekdays: {

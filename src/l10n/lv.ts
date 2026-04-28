@@ -58,6 +58,8 @@ export const Latvian: CustomLocale = {
 
   rangeSeparator: " līdz ",
   time_24hr: true,
+  prevMonthAriaLabel: "Iepriekšējais Mēnesis",
+  nextMonthAriaLabel: "Nākamais Mēnesis",
 };
 
 fp.l10ns.lv = Latvian;

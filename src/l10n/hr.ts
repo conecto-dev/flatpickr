@@ -56,6 +56,8 @@ export const Croatian: CustomLocale = {
     ],
   },
   time_24hr: true,
+  prevMonthAriaLabel: "Prethodni Mjesec",
+  nextMonthAriaLabel: "Sljedeći Mjesec",
 };
 
 fp.l10ns.hr = Croatian;

@@ -63,6 +63,8 @@ export const Polish: CustomLocale = {
   ordinal: () => {
     return ".";
   },
+  prevMonthAriaLabel: "Poprzedni Miesiąc",
+  nextMonthAriaLabel: "Następny Miesiąc",
 };
 
 fp.l10ns.pl = Polish;

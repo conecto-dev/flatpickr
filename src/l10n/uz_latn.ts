@@ -62,6 +62,8 @@ export const UzbekLatin: CustomLocale = {
   toggleTitle: "O‘tish uchun bosing",
   amPM: ["AM", "PM"],
   yearAriaLabel: "Yil",
+  prevMonthAriaLabel: "Oldingi Oy",
+  nextMonthAriaLabel: "Keyingi Oy",
   time_24hr: true,
 };
 

@@ -64,6 +64,8 @@ export const Norwegian: CustomLocale = {
   ordinal: () => {
     return ".";
   },
+  prevMonthAriaLabel: "Forrige Måned",
+  nextMonthAriaLabel: "Neste Måned",
 };
 
 fp.l10ns.no = Norwegian;

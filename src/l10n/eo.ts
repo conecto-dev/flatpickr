@@ -65,6 +65,8 @@ export const Esperanto: CustomLocale = {
     return "-a";
   },
   time_24hr: true,
+  prevMonthAriaLabel: "Antaŭa Monato",
+  nextMonthAriaLabel: "Sekva Monato",
 };
 
 fp.l10ns.eo = Esperanto;

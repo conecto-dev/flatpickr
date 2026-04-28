@@ -60,6 +60,8 @@ export const Burmese: CustomLocale = {
     return "";
   },
   time_24hr: true,
+  prevMonthAriaLabel: "ယခင်လ",
+  nextMonthAriaLabel: "နောက်လ",
 };
 
 fp.l10ns.my = Burmese;

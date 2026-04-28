@@ -53,6 +53,8 @@ export const Indonesian: CustomLocale = {
   },
   time_24hr: true,
   rangeSeparator: " - ",
+  prevMonthAriaLabel: "Bulan Sebelumnya",
+  nextMonthAriaLabel: "Bulan Berikutnya",
 };
 
 fp.l10ns.id = Indonesian;

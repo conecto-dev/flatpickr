@@ -61,6 +61,8 @@ export const Spanish: CustomLocale = {
   firstDayOfWeek: 1,
   rangeSeparator: " a ",
   time_24hr: true,
+  prevMonthAriaLabel: "Mes Anterior",
+  nextMonthAriaLabel: "Mes Siguiente",
 };
 
 fp.l10ns.es = Spanish;

@@ -64,6 +64,8 @@ export const Lithuanian: CustomLocale = {
   scrollTitle: "Keisti laiką pelės rateliu",
   toggleTitle: "Perjungti laiko formatą",
   time_24hr: true,
+  prevMonthAriaLabel: "Ankstesnis Mėnuo",
+  nextMonthAriaLabel: "Kitas Mėnuo",
 };
 
 fp.l10ns.lt = Lithuanian;

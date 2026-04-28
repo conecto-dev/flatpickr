@@ -1135,6 +1135,7 @@ function FlatpickrInstance(
       "flatpickr-prev-month"
     );
     self.prevMonthNav.type = "button";
+    self.prevMonthNav.setAttribute("aria-label", self.l10n.prevMonthAriaLabel);
     self.prevMonthNav.innerHTML = self.config.prevArrow;
 
     self.nextMonthNav = createElement<HTMLButtonElement>(
@@ -1142,6 +1143,7 @@ function FlatpickrInstance(
       "flatpickr-next-month"
     );
     self.nextMonthNav.type = "button";
+    self.nextMonthNav.setAttribute("aria-label", self.l10n.nextMonthAriaLabel);
     self.nextMonthNav.innerHTML = self.config.nextArrow;
 
     buildMonths();

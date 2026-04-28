@@ -66,6 +66,8 @@ export const French: CustomLocale = {
   scrollTitle: "Défiler pour augmenter la valeur",
   toggleTitle: "Cliquer pour basculer",
   time_24hr: true,
+  prevMonthAriaLabel: "Mois Précédent",
+  nextMonthAriaLabel: "Mois Suivant",
 };
 
 fp.l10ns.fr = French;

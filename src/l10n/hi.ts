@@ -53,6 +53,8 @@ export const Hindi: CustomLocale = {
       "दिसम्बर",
     ],
   },
+  prevMonthAriaLabel: "पिछला महीना",
+  nextMonthAriaLabel: "अगला महीना",
 };
 
 fp.l10ns.hi = Hindi;

@@ -90,6 +90,8 @@ export const Welsh: CustomLocale = {
     return "";
   },
   time_24hr: true,
+  prevMonthAriaLabel: "Mis Blaenorol",
+  nextMonthAriaLabel: "Mis Nesaf",
 };
 
 fp.l10ns.cy = Welsh;

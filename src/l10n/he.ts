@@ -47,6 +47,8 @@ export const Hebrew: CustomLocale = {
   },
   rangeSeparator: " אל ",
   time_24hr: true,
+  prevMonthAriaLabel: "חודש קודם",
+  nextMonthAriaLabel: "חודש הבא",
 };
 
 fp.l10ns.he = Hebrew;

@@ -57,6 +57,8 @@ export const SerbianCyrillic: CustomLocale = {
   firstDayOfWeek: 1,
   weekAbbreviation: "Нед.",
   rangeSeparator: " до ",
+  prevMonthAriaLabel: "Претходни Месец",
+  nextMonthAriaLabel: "Следећи Месец",
 };
 
 fp.l10ns.sr = SerbianCyrillic;

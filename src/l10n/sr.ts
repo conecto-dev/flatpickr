@@ -58,6 +58,8 @@ export const Serbian: CustomLocale = {
   weekAbbreviation: "Ned.",
   rangeSeparator: " do ",
   time_24hr: true,
+  prevMonthAriaLabel: "Prethodni Mesec",
+  nextMonthAriaLabel: "Sledeći Mesec",
 };
 
 fp.l10ns.sr = Serbian;

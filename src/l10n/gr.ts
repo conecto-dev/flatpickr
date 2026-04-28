@@ -69,6 +69,8 @@ export const Greek: CustomLocale = {
   monthAriaLabel: "μήνας",
   hourAriaLabel: "ώρα",
   minuteAriaLabel: "λεπτό",
+  prevMonthAriaLabel: "Προηγούμενος Μήνας",
+  nextMonthAriaLabel: "Επόμενος Μήνας",
 };
 
 fp.l10ns.gr = Greek;

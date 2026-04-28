@@ -56,6 +56,8 @@ export const Bosnian: CustomLocale = {
     ],
   },
   time_24hr: true,
+  prevMonthAriaLabel: "Prethodni Mjesec",
+  nextMonthAriaLabel: "Sljedeći Mjesec",
 };
 
 fp.l10ns.bs = Bosnian;

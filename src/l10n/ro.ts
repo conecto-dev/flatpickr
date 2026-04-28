@@ -60,6 +60,8 @@ export const Romanian: CustomLocale = {
   ordinal: () => {
     return "";
   },
+  prevMonthAriaLabel: "Luna Anterioară",
+  nextMonthAriaLabel: "Luna Următoare",
 };
 
 fp.l10ns.ro = Romanian;

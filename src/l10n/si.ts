@@ -54,6 +54,8 @@ export const Sinhala: CustomLocale = {
     ],
   },
   time_24hr: true,
+  prevMonthAriaLabel: "පෙර මාසය",
+  nextMonthAriaLabel: "ඊළඟ මාසය",
 };
 
 fp.l10ns.si = Sinhala;

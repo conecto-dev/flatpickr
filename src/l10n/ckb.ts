@@ -65,6 +65,8 @@ export const Kurdish: CustomLocale = {
   ordinal: () => {
     return "";
   },
+  prevMonthAriaLabel: "مانگی پێشوو",
+  nextMonthAriaLabel: "مانگی داهاتوو",
 };
 
 fp.l10ns.ckb = Kurdish;

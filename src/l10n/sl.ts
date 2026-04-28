@@ -60,6 +60,8 @@ export const Slovenian: CustomLocale = {
   ordinal: function () {
     return ".";
   },
+  prevMonthAriaLabel: "Prejšnji Mesec",
+  nextMonthAriaLabel: "Naslednji Mesec",
 };
 
 fp.l10ns.sl = Slovenian;

@@ -56,6 +56,8 @@ export const Portuguese: CustomLocale = {
 
   rangeSeparator: " até ",
   time_24hr: true,
+  prevMonthAriaLabel: "Mês Anterior",
+  nextMonthAriaLabel: "Próximo Mês",
 };
 
 fp.l10ns.pt = Portuguese;

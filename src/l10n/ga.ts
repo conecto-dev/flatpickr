@@ -56,6 +56,8 @@ export const Irish: CustomLocale = {
     ],
   },
   time_24hr: true,
+  prevMonthAriaLabel: "An Mhí Roimhe",
+  nextMonthAriaLabel: "An Chéad Mhí Eile",
 };
 
 fp.l10ns.hr = Irish;

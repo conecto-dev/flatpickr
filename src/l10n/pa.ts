@@ -54,6 +54,8 @@ export const Punjabi: CustomLocale = {
     ],
   },
   time_24hr: true,
+  prevMonthAriaLabel: "ਪਿਛਲਾ ਮਹੀਨਾ",
+  nextMonthAriaLabel: "ਅਗਲਾ ਮਹੀਨਾ",
 };
 
 fp.l10ns.pa = Punjabi;

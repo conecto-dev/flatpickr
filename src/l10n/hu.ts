@@ -65,6 +65,8 @@ export const Hungarian: CustomLocale = {
   toggleTitle: "Kattintson a váltáshoz",
   rangeSeparator: " - ",
   time_24hr: true,
+  prevMonthAriaLabel: "Előző Hónap",
+  nextMonthAriaLabel: "Következő Hónap",
 };
 
 fp.l10ns.hu = Hungarian;

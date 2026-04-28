@@ -63,6 +63,8 @@ export const Thai: CustomLocale = {
   ordinal: () => {
     return "";
   },
+  prevMonthAriaLabel: "เดือนก่อนหน้า",
+  nextMonthAriaLabel: "เดือนถัดไป",
 };
 
 fp.l10ns.th = Thai;

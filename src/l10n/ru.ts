@@ -63,6 +63,8 @@ export const Russian: CustomLocale = {
   amPM: ["ДП", "ПП"],
   yearAriaLabel: "Год",
   time_24hr: true,
+  prevMonthAriaLabel: "Предыдущий Месяц",
+  nextMonthAriaLabel: "Следующий Месяц",
 };
 
 fp.l10ns.ru = Russian;

@@ -56,6 +56,8 @@ export const Vietnamese: CustomLocale = {
 
   firstDayOfWeek: 1,
   rangeSeparator: " đến ",
+  prevMonthAriaLabel: "Tháng Trước",
+  nextMonthAriaLabel: "Tháng Sau",
 };
 
 fp.l10ns.vn = Vietnamese;

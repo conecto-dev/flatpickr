@@ -55,6 +55,8 @@ export const Bulgarian: CustomLocale = {
   },
   time_24hr: true,
   firstDayOfWeek: 1,
+  prevMonthAriaLabel: "Предишен Месец",
+  nextMonthAriaLabel: "Следващ Месец",
 };
 
 fp.l10ns.bg = Bulgarian;

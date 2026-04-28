@@ -48,6 +48,8 @@ export const Mongolian: CustomLocale = {
   },
   rangeSeparator: "-с ",
   time_24hr: true,
+  prevMonthAriaLabel: "Өмнөх Сар",
+  nextMonthAriaLabel: "Дараагийн Сар",
 };
 
 fp.l10ns.mn = Mongolian;

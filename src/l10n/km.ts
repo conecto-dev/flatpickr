@@ -62,6 +62,8 @@ export const Khmer: CustomLocale = {
   toggleTitle: "ចុចដើម្បីផ្លាស់ប្ដូរ",
   yearAriaLabel: "ឆ្នាំ",
   time_24hr: true,
+  prevMonthAriaLabel: "ខែ​មុន",
+  nextMonthAriaLabel: "ខែ​បន្ទាប់",
 };
 
 fp.l10ns.km = Khmer;

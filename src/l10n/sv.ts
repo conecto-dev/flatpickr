@@ -62,6 +62,8 @@ export const Swedish: CustomLocale = {
   ordinal: () => {
     return ".";
   },
+  prevMonthAriaLabel: "Föregående Månad",
+  nextMonthAriaLabel: "Nästa Månad",
 };
 
 fp.l10ns.sv = Swedish;

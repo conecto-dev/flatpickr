@@ -51,6 +51,8 @@ export const Malaysian: CustomLocale = {
   ordinal: () => {
     return "";
   },
+  prevMonthAriaLabel: "Bulan Lepas",
+  nextMonthAriaLabel: "Bulan Seterusnya",
 };
 
 fp.l10ns.ms = Malaysian;

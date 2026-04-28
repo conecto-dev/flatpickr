@@ -58,6 +58,8 @@ export const Mandarin: CustomLocale = {
   weekAbbreviation: "周",
   scrollTitle: "滚动切换",
   toggleTitle: "点击切换 12/24 小时时制",
+  prevMonthAriaLabel: "上个月",
+  nextMonthAriaLabel: "下个月",
 };
 
 fp.l10ns.zh = Mandarin;

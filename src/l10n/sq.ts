@@ -61,6 +61,8 @@ export const Albanian: CustomLocale = {
   hourAriaLabel: "Ora",
   minuteAriaLabel: "Minuta",
   time_24hr: true,
+  prevMonthAriaLabel: "Muaji i Kaluar",
+  nextMonthAriaLabel: "Muaji Tjetër",
 };
 
 fp.l10ns.sq = Albanian;

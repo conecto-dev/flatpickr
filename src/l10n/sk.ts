@@ -60,6 +60,8 @@ export const Slovak: CustomLocale = {
   ordinal: function () {
     return ".";
   },
+  prevMonthAriaLabel: "Predchádzajúci Mesiac",
+  nextMonthAriaLabel: "Nasledujúci Mesiac",
 };
 
 fp.l10ns.sk = Slovak;

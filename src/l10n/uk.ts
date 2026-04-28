@@ -56,6 +56,8 @@ export const Ukrainian: CustomLocale = {
     ],
   },
   time_24hr: true,
+  prevMonthAriaLabel: "Попередній Місяць",
+  nextMonthAriaLabel: "Наступний Місяць",
 };
 
 fp.l10ns.uk = Ukrainian;

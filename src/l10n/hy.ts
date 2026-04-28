@@ -66,6 +66,8 @@ export const Armenian: CustomLocale = {
   hourAriaLabel: "Ժամ",
   minuteAriaLabel: "Րոպե",
   time_24hr: true,
+  prevMonthAriaLabel: "Նախորդ Ամիս",
+  nextMonthAriaLabel: "Հաջորդ Ամիս",
 };
 
 fp.l10ns.hy = Armenian;
