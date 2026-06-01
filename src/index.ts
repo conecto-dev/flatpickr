@@ -460,7 +460,8 @@ function FlatpickrInstance(
     if (self.daysContainer !== undefined) {
       bind(self.prevMonthNav, "click", onMonthNavClick);
       bind(self.nextMonthNav, "click", onMonthNavClick);
-      bind(self.monthsDropdownContainer, ["keyup", "increment"], onYearInput);
+      if (self.monthsDropdownContainer)
+        bind(self.monthsDropdownContainer, ["keyup", "increment"], onYearInput);
       bind(self.daysContainer, "click", selectDate);
     }
 
@@ -1749,6 +1750,26 @@ function FlatpickrInstance(
             e.preventDefault();
             updateTime();
             focusAndClose();
+          } else if (
+            eventTarget === self.currentMonthElement &&
+            self.monthsDropdownContainer
+          ) {
+            e.preventDefault();
+            self.monthsDropdownContainer.focus();
+          } else if (
+            self.prevMonthNav &&
+            self.prevMonthNav.contains(eventTarget as Node)
+          ) {
+            e.preventDefault();
+            changeMonth(-1);
+          } else if (
+            self.nextMonthNav &&
+            self.nextMonthNav.contains(eventTarget as Node)
+          ) {
+            e.preventDefault();
+            changeMonth(1);
+          } else {
+            selectDate(e);
           }
           break;
 
@@ -1816,8 +1837,6 @@ function FlatpickrInstance(
 
         case "Tab":
           if (isCalendarElem(eventTarget as HTMLElement) || isTimeObj) {
-            e.preventDefault();
-
             const tabbableElements: HTMLElement[] = [];
 
             if (self.prevMonthNav && !self._hidePrevMonthArrow) {
@@ -1887,9 +1906,10 @@ function FlatpickrInstance(
             if (currentIndex !== -1) {
               const direction = e.shiftKey ? -1 : 1;
               const nextIndex = currentIndex + direction;
-              let targetElement: HTMLElement | null = null;
 
               if (self.config.trapFocus) {
+                e.preventDefault();
+                let targetElement: HTMLElement;
                 if (nextIndex < 0) {
                   targetElement = tabbableElements[tabbableElements.length - 1];
                 } else if (nextIndex >= tabbableElements.length) {
@@ -1897,16 +1917,13 @@ function FlatpickrInstance(
                 } else {
                   targetElement = tabbableElements[nextIndex];
                 }
-              } else {
-                if (nextIndex < 0 || nextIndex >= tabbableElements.length) {
-                  self._input.focus();
-                } else {
-                  targetElement = tabbableElements[nextIndex];
-                }
-              }
-
-              if (targetElement) {
                 targetElement.focus();
+              } else {
+                if (nextIndex >= 0 && nextIndex < tabbableElements.length) {
+                  e.preventDefault();
+                  tabbableElements[nextIndex].focus();
+                }
+                // else: let browser handle Tab naturally out of calendar
               }
             }
           }

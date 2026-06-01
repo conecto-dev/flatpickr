@@ -16,7 +16,7 @@ function rangePlugin(config: Config = {}): Plugin {
     let dateFormat = "",
       secondInput: HTMLInputElement,
       _secondInputFocused: boolean,
-      _prevDates: Date[];
+      _prevDates: Date[] | undefined;
 
     const createSecondInput = () => {
       if (config.input) {
@@ -135,6 +135,7 @@ function rangePlugin(config: Config = {}): Plugin {
           fp.latestSelectedDateObj = fp.selectedDates[0];
           fp._setHoursFromDate(fp.selectedDates[0]);
           _secondInputFocused = false;
+          _prevDates = undefined;
           fp.jumpToDate(fp.selectedDates[0]);
         });
 
@@ -164,11 +165,11 @@ function rangePlugin(config: Config = {}): Plugin {
 
       onChange() {
         if (!fp.selectedDates.length) {
+          _prevDates = undefined;
           setTimeout(() => {
             if (fp.selectedDates.length) return;
 
             secondInput.value = "";
-            _prevDates = [];
           }, 10);
         }
 
