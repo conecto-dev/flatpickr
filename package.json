@@ -57,16 +57,13 @@
   "types": "./dist/typings.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+git@github.com:conecto-dev/flatpickr.git"
+    "url": "git+ssh://git@github.com/conecto-dev/flatpickr.git"
   },
   "author": "Gregory <gregory.mkv@gmail.com>",
   "contributors": [
     "Marco Vockner <m.vockner@conecto.at>"
   ],
   "license": "MIT",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "keywords": [
     "javascript",
     "datetimepicker",
