@@ -3,10 +3,11 @@ name: Release
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 permissions:
+  contents: write
   id-token: write  # Required for OIDC NPM publish
-  contents: read
 
 jobs:
   release:
@@ -25,4 +26,4 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
-      - run: npm publish --access public
+      - run: NODE_AUTH_TOKEN="" npm publish --access public
