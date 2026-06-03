@@ -460,8 +460,12 @@ function FlatpickrInstance(
     if (self.daysContainer !== undefined) {
       bind(self.prevMonthNav, "click", onMonthNavClick);
       bind(self.nextMonthNav, "click", onMonthNavClick);
-      if (self.monthsDropdownContainer)
-        bind(self.monthsDropdownContainer, ["keyup", "increment"], onYearInput);
+      bind(
+        self.yearElements.map((el) => el.parentNode as HTMLDivElement),
+        "click",
+        onMonthNavClick
+      );
+      bind(self.yearElements, ["keyup", "increment"], onYearInput);
       bind(self.daysContainer, "click", selectDate);
     }
 
@@ -1922,8 +1926,11 @@ function FlatpickrInstance(
                 if (nextIndex >= 0 && nextIndex < tabbableElements.length) {
                   e.preventDefault();
                   tabbableElements[nextIndex].focus();
+                } else if (!self.config.inline) {
+                  e.preventDefault();
+                  self._input.focus();
                 }
-                // else: let browser handle Tab naturally out of calendar
+                // else inline: let browser handle Tab naturally out of calendar
               }
             }
           }

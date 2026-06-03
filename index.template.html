@@ -27,15 +27,18 @@
     <div>
       <label>
         <div>Date 1</div>
-        <input placeholder="Select Date..." class=date />
+        <input placeholder="Select Date..." class="date" />
       </label>
 
-      <!--
       <label>
-        <div>Date 2</div>
-        <input placeholder="Select Date..." class=date id=input2 />
+        <div>Date with direct input</div>
+        <input placeholder="Select Date..." class="date-input" />
       </label>
-      -->
+
+      <label>
+        <div>Range selector</div>
+        <input placeholder="Select Date..." class="date-range" />
+      </label>
     </div>
   </div>
   
@@ -50,8 +53,12 @@
   <script src="./dist/plugins/weekSelect/weekSelect.js"></script>
 
   <script>
-    var fp = flatpickr(".date", {
-
+    flatpickr(".date", {})
+    flatpickr(".date-input", {
+      allowInput: true,
+    })
+    flatpickr(".date-range", {
+      mode: "range",
     })
   </script>
 </body>

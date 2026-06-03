@@ -523,7 +523,7 @@ describe("flatpickr", () => {
 
       fp.open();
       fp.altInput &&
-        simulate("keydown", fp.altInput, { keyCode: 37, bubbles: true }); // "ArrowLeft"
+        simulate("keydown", fp.altInput, { key: "ArrowLeft", bubbles: true }); // "ArrowLeft"
       expect(fired).toEqual(true);
 
       fp.destroy();
@@ -534,8 +534,8 @@ describe("flatpickr", () => {
 
       fired = false;
 
-      simulate("keydown", input, { keyCode: 37, bubbles: true }); // "ArrowLeft"
-      simulate("keydown", document.body, { keyCode: 37, bubbles: true }); // "ArrowLeft"
+      simulate("keydown", input, { key: "ArrowLeft", bubbles: true }); // "ArrowLeft"
+      simulate("keydown", document.body, { key: "ArrowLeft", bubbles: true }); // "ArrowLeft"
       expect(fired).toEqual(false);
     });
 
@@ -816,7 +816,7 @@ describe("flatpickr", () => {
         "keydown",
         fp.days.childNodes[15],
         {
-          keyCode: 13, // "Enter"
+          key: "Enter", // "Enter"
         },
         KeyboardEvent
       );
@@ -826,7 +826,7 @@ describe("flatpickr", () => {
         "keydown",
         fp.calendarContainer,
         {
-          keyCode: 27, // "Escape"
+          key: "Escape", // "Escape"
         },
         KeyboardEvent
       );
@@ -845,7 +845,7 @@ describe("flatpickr", () => {
 
       simulate("keydown", fp.calendarContainer, {
         // "ArrowRight"
-        keyCode: 39,
+        key: "ArrowRight",
         ctrlKey: true,
       });
       expect(fp.currentMonth).toBe(1);
@@ -853,12 +853,12 @@ describe("flatpickr", () => {
 
       simulate("keydown", fp.calendarContainer, {
         // "ArrowLeft"
-        keyCode: 37,
+        key: "ArrowLeft",
         ctrlKey: true,
       });
       simulate("keydown", fp.calendarContainer, {
         // "ArrowLeft"
-        keyCode: 37,
+        key: "ArrowLeft",
         ctrlKey: true,
       });
       expect(fp.currentMonth).toBe(11);
@@ -881,7 +881,7 @@ describe("flatpickr", () => {
         "keydown",
         fp._input,
         {
-          keyCode: 13, // "Enter"
+          key: "Enter", // "Enter"
         },
         KeyboardEvent
       );
@@ -965,10 +965,10 @@ describe("flatpickr", () => {
       fp.jumpToDate("2017-1-1");
       fp.open();
 
-      simulate("keydown", fp.days.childNodes[0], { keyCode: 13 }); // "Enter"
+      simulate("keydown", fp.days.childNodes[0], { key: "Enter" }); // "Enter"
       expect(fp.selectedDates.length).toBe(1);
 
-      simulate("keydown", fp.days.childNodes[0], { keyCode: 13 }); // "Enter"
+      simulate("keydown", fp.days.childNodes[0], { key: "Enter" }); // "Enter"
       expect(fp.selectedDates.length).toBe(0);
     });
 
@@ -1666,7 +1666,7 @@ describe("flatpickr", () => {
         "keydown",
         fp.hourElement!,
         {
-          keyCode: 13, // "Enter"
+          key: "Enter", // "Enter"
         },
         KeyboardEvent
       );
@@ -1735,7 +1735,7 @@ describe("flatpickr", () => {
       simulate(
         "keydown",
         fp.todayDateElem as Node,
-        { keyCode: 37 },
+        { key: "ArrowLeft" },
         KeyboardEvent
       );
       const todayIndex = Array.from(fp.days.childNodes).indexOf(
@@ -1750,7 +1750,7 @@ describe("flatpickr", () => {
       simulate(
         "keydown",
         fp.days.childNodes[todayIndex - 1] as Node,
-        { keyCode: 13 },
+        { key: "Enter" },
         KeyboardEvent
       );
       expect((fp.selectedDateElem as DayElement).tabIndex).toEqual(0);
@@ -1794,7 +1794,7 @@ describe("flatpickr", () => {
     });
 
     it("time-picker focuses out onto input", () => {
-      createInstance({ mode: "time" });
+      createInstance({ mode: "time", trapFocus: false });
       fp.open();
 
       expect(fp.hourElement).toBeDefined();
@@ -1810,7 +1810,7 @@ describe("flatpickr", () => {
         "keydown",
         fp.minuteElement,
         {
-          keyCode: 9, // Tab
+          key: "Tab", // Tab
         },
         KeyboardEvent
       );
@@ -1820,7 +1820,7 @@ describe("flatpickr", () => {
         "keydown",
         fp.amPM,
         {
-          keyCode: 9, // Tab
+          key: "Tab", // Tab
           shiftKey: true,
         },
         KeyboardEvent
@@ -1831,7 +1831,7 @@ describe("flatpickr", () => {
         "keydown",
         fp.amPM,
         {
-          keyCode: 9, // Tab
+          key: "Tab", // Tab
         },
         KeyboardEvent
       );
