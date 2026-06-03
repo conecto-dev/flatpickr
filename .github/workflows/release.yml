@@ -4,6 +4,10 @@ on:
   release:
     types: [published]
 
+permissions:
+  id-token: write  # Required for OIDC NPM publish
+  contents: read
+
 jobs:
   release:
     name: build & publish
@@ -16,11 +20,9 @@ jobs:
           node-version: 18
           cache: npm
           registry-url: https://registry.npmjs.org
+          package-manager-cache: false  # never use caching in release builds
 
       - run: npm ci
-      - run: npm test
       - run: npm run build
-
+      - run: npm test
       - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
