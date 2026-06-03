@@ -1,26 +1,32 @@
-name: 'GitHub Actions'
+name: CI
 
 on:
   push:
     branches:
-    - master
+      - master
   pull_request:
 
 jobs:
   tests:
-    name: 'tests'
-    runs-on: ubuntu-20.04
-
+    name: tests
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: bahmutov/npm-install@v1
-    - run: npm test
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+      - run: npm ci
+      - run: npm test
 
   prettier:
-    name: 'prettier'
-    runs-on: ubuntu-20.04
-
+    name: prettier
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: bahmutov/npm-install@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+      - run: npm ci
       - run: npm run fmt:check
